@@ -4,8 +4,8 @@ import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-uid = os.environ["USERNAME"]
-pwd = os.environ["PASSWORD"]
+UID = os.environ["USERNAME"]
+PWD = os.environ["PASSWORD"]
 
 #出错处理
 def is_element_present(browser, xpath):
@@ -117,27 +117,13 @@ def timing(hour, minute, the_users):
             mail.mail(user.email)
             print("Emailing is finished")
             '''
-
-if __name__ == "__main__":
-    #可多人定时
-    '''
-    while True:
-        timing(12,26,users)
-    
-    #单人非定时
-    '''
-    flag=sign_in(UID,PWD)
-    count=0
-    while count<=100:
-        if flag==True:
-            mail.mail(MAIL_RECIVER)
-            print("finished")
-            break
-        else:
-            str="fail: "
-            count=count+1
-            str=str+count
-            print(str)
-            time.sleep(5)
-            flag=sign_in(UID,PWD)
 """
+if __name__ == "__main__":
+    flag=sign_in(UID,PWD)
+    if flag==True:
+        print("打卡成功!")
+        break
+    else:
+        print("打卡失败!")
+        time.sleep(5)
+        flag=sign_in(UID,PWD)
