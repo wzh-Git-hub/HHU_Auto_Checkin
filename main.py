@@ -86,38 +86,6 @@ def sign_in(uid, pwd):
     print("Singing in for User {0} is finished".format(uid))
     return True
 
-"""
-def timing(hour, minute, the_users):
-    now = datetime.datetime.now()
-    flag=True
-    msg=""
-    count=0
-    if now.hour == hour and now.minute == minute:
-        print("\n\n\n")
-        print(now)
-        for user in the_users:
-            count=0
-            flag=sign_in(user.uid,user.pwd)
-            while count<=100:
-                if flag==True:
-                    mail.mail(user.email)
-                    print("finished")
-                    break
-                else:
-                    str="fail: "
-                    count=count+1
-                    str=str+count
-                    print(str)
-                    time.sleep(5)
-                    flag=sign_in(user.uid,user.pwd)
-            
-            '''
-            flag=sign_in(user.uid, user.pwd)
-            print("User {0} finished".format(user.uid))
-            mail.mail(user.email)
-            print("Emailing is finished")
-            '''
-"""
 if __name__ == "__main__":
     flag=sign_in(UID,PWD)
     if flag==True:
