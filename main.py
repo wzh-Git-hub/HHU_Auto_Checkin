@@ -122,7 +122,6 @@ if __name__ == "__main__":
     flag=sign_in(UID,PWD)
     if flag==True:
         print("打卡成功!")
-        break
     else:
         print("打卡失败!")
         time.sleep(5)
