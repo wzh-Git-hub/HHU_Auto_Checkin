@@ -4,7 +4,7 @@ HHU_Auto_Checkin
 
 使用GitHub Action自动打卡
 
-#　使用说明
+# 使用说明
 
 １.Fork 本仓库，然后点击你的仓库右上角的 Settings，找到 Secrets 这一项，添加两个秘密环境变量USERNAME和PASSWORD
 
@@ -12,5 +12,5 @@ HHU_Auto_Checkin
 
 ３.（可选）在你这个 Fork 的仓库内修改一下.github/workflows/action.yml 文件（这个本项目的Workflow的配置文件）。
 
-#　参考
+# 参考
 Auto_healthyReport: https://github.com/zibowang81192/Auto_healthyReport
