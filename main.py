@@ -3,6 +3,8 @@ import time
 import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import time
+import random
 
 UID = os.environ["USERNAME"]
 PWD = os.environ["PASSWORD"]
@@ -86,7 +88,22 @@ def sign_in(uid, pwd):
     print("Singing in for User {0} is finished".format(uid))
     return True
 
+#随机时间
+def randomTime(seconds):
+    randomnumber = random.randint(0, seconds)
+    counter = 0
+    while counter < randomnumber:
+        num = randomnumber - counter
+        print("倒计时: " + str(num) + "秒")
+        if randomnumber - counter < 300:
+            time.sleep(num)
+            counter += num
+        else:
+            time.sleep(300)
+            counter += 300
+
 if __name__ == "__main__":
+    randomTime(3600)
     flag=sign_in(UID,PWD)
     if flag==True:
         print("打卡成功!")

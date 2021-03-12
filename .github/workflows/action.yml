@@ -28,21 +28,5 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
-          echo "即将开始打卡"
-          #随机时间打卡
-          random_time=$(($RANDOM % 60))
-          i=1
-          while((i<=${random_time}))
-          do
-          echo "倒计时: $((${random_time}-$i)) 分钟"
-          if [ $i > $((${random_time}-5)) ]
-          then
-          sleep $((${random_time}-$i))m
-          else
-          sleep 5m
-          fi
-          let i+=5
-          done
-          
           #执行主程序
           python main.py
