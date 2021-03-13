@@ -80,7 +80,7 @@ def sign_in(uid, pwd):
 
     except Exception as e:
         msg = "while signing in for user " + uid + " there is an exception: \n" + str(e)
-        mail.mail(msg, MAIL_SENDER)
+        print(msg)
     finally:
         browser.quit()
         
@@ -93,12 +93,18 @@ def randomTime(seconds):
     randomnumber = random.randint(0, seconds)
     counter = 0
     while counter < randomnumber:
-        num = randomnumber - counter
-        print("倒计时: " + str(num) + "秒")
-        if randomnumber - counter < 300:
-            time.sleep(num)
-            counter += num
+        restTime = randomnumber - counter
+        restMinutes = int(restTime / 60)
+        restSeconds = restTime % 60
+        if restTime < 300:
+            if restTime < 60:
+                print("倒计时: "+ str(restSeconds) + "秒")
+            else:
+                print("倒计时: " + str(restMinutes) + "分" + str(restSeconds) + "秒")
+            time.sleep(restTime)
+            counter += restTime
         else:
+            print("倒计时: " + str(restMinutes) + "分" + str(restSeconds) + "秒")
             time.sleep(300)
             counter += 300
 
