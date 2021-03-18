@@ -8,6 +8,7 @@ import random
 
 UID = os.environ["USERNAME"]
 PWD = os.environ["PASSWORD"]
+RNDTM = os.environ["RANDOMTIME"]
 
 #出错处理
 def is_element_present(browser, xpath):
@@ -89,7 +90,7 @@ def sign_in(uid, pwd):
     return True
 
 #随机时间
-def randomTime(seconds):
+def randomTime(seconds=3600):
     randomnumber = random.randint(0, seconds)
     counter = 0
     while counter < randomnumber:
@@ -109,7 +110,10 @@ def randomTime(seconds):
             counter += 300
 
 if __name__ == "__main__":
-    randomTime(3600)
+    if RNDTM:
+        randomTime(int(RNDTM)*60)
+    else:
+        randomTime(3600)
     flag=sign_in(UID,PWD)
     if flag==True:
         print("打卡成功!")
