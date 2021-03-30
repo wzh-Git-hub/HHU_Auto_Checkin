@@ -110,14 +110,35 @@ def randomTime(seconds=3600):
             counter += 300
 
 if __name__ == "__main__":
+	#检查账号密码数量是否一致
+    if not PWD or not UID:
+        print("你还没有添加账户\n")
+        exit(1)
+    uid_list = UID.split()
+    pwd_list = PWD.split()
+    uid_length = len(uid_list)
+    pwd_length = len(pwd_list)
+    if uid_length!=pwd_length:
+        print("账号和密码数量不一致\n");
+        exit(1)
+    #随机时间
     if RNDTM:
         randomTime(int(RNDTM)*60)
     else:
         randomTime(3600)
-    flag=sign_in(UID,PWD)
-    if flag==True:
-        print("打卡成功!")
-    else:
-        print("打卡失败!")
-        time.sleep(5)
-        flag=sign_in(UID,PWD)
+    #开始打卡
+    for i in range(pwd_length):
+        print("**************************************\n正在给第 "+str(i+1)+" 个账号打卡")
+        flag=sign_in(uid_list[i], pwd_list[i])
+        if flag:
+            print("第 "+str(i+1)+" 个账号打卡成功!")
+        else:
+            print("第 "+str(i+1)+" 个账号打卡失败!\n正在发起第2次尝试")
+            flag = sign_in(uid_list[i], pwd_list[i])
+            if flag:
+                print("第 2 次尝试成功!")
+            else:
+                print("第 2 次尝试失败!")
+        print()
+        time.sleep(30)
+    print("本次任务执行完毕")
