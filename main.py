@@ -5,10 +5,42 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import random
+import smtplib
+from email.mime.text import MIMEText
 
 UID = os.environ["USERNAME"]
 PWD = os.environ["PASSWORD"]
 RNDTM = os.environ["RANDOMTIME"]
+MAIL_RECIVER = os.environ["RECIVERMAIL"]
+MAIL_SENDER = os.environ["SENDER"]  # 发件箱
+MAIL_PWD = os.environ["MAIL_PWD"]      # 发件箱授权码
+
+def mail(rec):
+    # ----------1.跟发件相关的参数------
+    # smtpserver = "smtp.163.com"         # 发件服务器
+    MAIL_SENDER =  # 发件箱
+    MAIL_PWD =       # 发件箱授权码
+    smtpserver = "smtp.qq.com"
+    port = 465                   # 端口
+    sender = MAIL_SENDER         # 发件人
+    psw = MAIL_PWD               # 密码
+    receiver = rec               # 接收人
+    
+    # ----------2.编辑邮件的内容------
+    subject =  '成功打卡提醒'             #邮件主题
+    body = '<p>今日已成功打卡</p>'     # 定义邮件正文为html格式
+    msg = MIMEText(body, "html", "utf-8")
+    msg['from'] = sender
+    msg['to'] = receiver
+    msg['subject'] = subject
+
+    # ----------3.发送邮件------
+    # smtp = smtplib.SMTP()
+    # smtp.connect(smtpserver)                                 # 连服务器
+    smtp = smtplib.SMTP_SSL(smtpserver, port)
+    smtp.login(sender, psw)                                      # 登录
+    smtp.sendmail(sender, receiver, msg.as_string())  # 发送
+    smtp.quit()                                                        # 关闭
 
 #出错处理
 def is_element_present(browser, xpath):
@@ -114,8 +146,9 @@ if __name__ == "__main__":
     if not PWD or not UID:
         print("你还没有添加账户\n")
         exit(1)
-    uid_list = UID.split()
-    pwd_list = PWD.split()
+    uid_list = UID
+    pwd_list = PWD
+    mail_list = MAIL_RECIVER
     uid_length = len(uid_list)
     pwd_length = len(pwd_list)
     if uid_length!=pwd_length:
@@ -132,11 +165,13 @@ if __name__ == "__main__":
         flag=sign_in(uid_list[i], pwd_list[i])
         if flag:
             print("第 "+str(i+1)+" 个账号打卡成功!")
+            mail(mail_list[i])
         else:
             print("第 "+str(i+1)+" 个账号打卡失败!\n正在发起第2次尝试")
             flag = sign_in(uid_list[i], pwd_list[i])
             if flag:
                 print("第 2 次尝试成功!")
+                mail(mail_list[i])
             else:
                 print("第 2 次尝试失败!")
         print()
