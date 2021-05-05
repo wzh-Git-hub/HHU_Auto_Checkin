@@ -12,14 +12,14 @@ UID = os.environ["USERNAME"]
 PWD = os.environ["PASSWORD"]
 RNDTM = os.environ["RANDOMTIME"]
 MAIL_RECIVER = os.environ["RECIVERMAIL"]
-MAIL_SENDER = os.environ["SENDER"]  # 发件箱
-MAIL_PWD = os.environ["MAIL_PWD"]      # 发件箱授权码
 
 def mail(rec):
     # ----------1.跟发件相关的参数------
     # smtpserver = "smtp.163.com"         # 发件服务器
-    MAIL_SENDER = MAIL_SENDER # 发件箱
-    MAIL_PWD = MAIL_PWD      # 发件箱授权码
+    MAIL_SENDER = os.environ["SENDER"]  # 发件箱
+    MAIL_PWD = os.environ["MAIL_PWD"]      # 发件箱授权码
+#     MAIL_SENDER = MAIL_SENDER # 发件箱
+#     MAIL_PWD = MAIL_PWD      # 发件箱授权码
     smtpserver = "smtp.qq.com"
     port = 465                   # 端口
     sender = MAIL_SENDER         # 发件人
