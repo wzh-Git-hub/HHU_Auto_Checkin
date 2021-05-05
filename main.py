@@ -18,8 +18,8 @@ MAIL_PWD = os.environ["MAIL_PWD"]      # 发件箱授权码
 def mail(rec):
     # ----------1.跟发件相关的参数------
     # smtpserver = "smtp.163.com"         # 发件服务器
-    MAIL_SENDER =  # 发件箱
-    MAIL_PWD =       # 发件箱授权码
+    MAIL_SENDER = MAIL_SENDER # 发件箱
+    MAIL_PWD = MAIL_PWD      # 发件箱授权码
     smtpserver = "smtp.qq.com"
     port = 465                   # 端口
     sender = MAIL_SENDER         # 发件人
@@ -146,19 +146,19 @@ if __name__ == "__main__":
     if not PWD or not UID:
         print("你还没有添加账户\n")
         exit(1)
-    uid_list = UID
-    pwd_list = PWD
-    mail_list = MAIL_RECIVER
+    uid_list = UID.split()
+    pwd_list = PWD.split()
+    mail_list = MAIL_RECIVER.split()
     uid_length = len(uid_list)
     pwd_length = len(pwd_list)
     if uid_length!=pwd_length:
         print("账号和密码数量不一致\n");
         exit(1)
     #随机时间
-    if RNDTM:
-        randomTime(int(RNDTM)*60)
-    else:
-        randomTime(3600)
+#     if RNDTM:
+#         randomTime(int(RNDTM)*60)
+#     else:
+#         randomTime(3600)
     #开始打卡
     for i in range(pwd_length):
         print("**************************************\n正在给第 "+str(i+1)+" 个账号打卡")
