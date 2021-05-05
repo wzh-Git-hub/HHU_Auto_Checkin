@@ -28,5 +28,8 @@ jobs:
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           RANDOMTIME: ${{ secrets.RANDOMTIME}}
+          RECIVERMAIL: ${{ secrets.RECIVERMAIL }}
+          SENDER: ${{ secrets.SENDER }}
+          MAIL_PWD: ${{ secrets.MAIL_PWD}}
         run: |
           python main.py
