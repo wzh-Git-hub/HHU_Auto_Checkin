@@ -7,6 +7,7 @@ import time
 import random
 import smtplib
 from email.mime.text import MIMEText
+from selenium.webdriver.common.by import By
 
 UID = os.environ["USERNAME"]
 PWD = os.environ["PASSWORD"]
@@ -75,16 +76,10 @@ def sign_in(uid, pwd):
     try:
         # input uid and password
         print("Inputting the UID and Password of User {0}".format(uid))
-        browser.find_element_by_id("IDToken1").send_keys(uid)
-        browser.find_element_by_id("IDToken2").send_keys(pwd)
+        browser.find_element(by=By.ID,value="username").send_keys(uid)
+        browser.find_element(by=By.ID,value="password").send_keys(pwd)
         # click to sign in
-        #browser.find_element_by_xpath("/html/body/table[1]/tr[2]/td[1]/table[2]/tr[2]/td[2]/table[1]/tr[3]/td[1]/IMG[1]").click()
-        img_list=browser.find_elements_by_tag_name("IMG")
-        '''
-        for li in img_list:
-            print(li)
-        '''
-        img_list[4].click()
+        browser.find_element(By.XPATH,'//*[@id="casLoginForm"]/p[5]/button').click()
         time.sleep(3)
     
         #打印当前页面URL
@@ -103,9 +98,9 @@ def sign_in(uid, pwd):
             print(msg)
             print(url)
             time.sleep(1)
-            browser.find_element(by=NAME,value="name_RADIO_799044").click()
+            browser.find_element(by=By.NAME,value="name_RADIO_799044").click()
             time.sleep(1)
-            browser.find_element_by_id("saveBtn").click()
+            browser.find_element(by=By.ID,value="saveBtn").click()
             msg=browser.title
             url=browser.current_url
             print(msg)
