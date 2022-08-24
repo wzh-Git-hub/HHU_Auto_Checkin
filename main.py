@@ -68,7 +68,7 @@ def sign_in(uid, pwd):
     # simulate a browser to open the website
     browser = webdriver.Chrome(options=chrome_options)
     # browser = webdriver.Chrome()
-    browser.get("http://ids.hhu.edu.cn/amserver/UI/Login?goto=http%3A%2F%2Fform.hhu.edu.cn%2Fpdc%2Fform%2Flist")
+    browser.get("http://dailyreport.hhu.edu.cn/pdc/form/list")
     # 打印当前页面title
     print(browser.title)
 
