@@ -102,6 +102,8 @@ def sign_in(uid, pwd):
             url=browser.current_url
             print(msg)
             print(url)
+	    time.sleep(1)
+            browser.find_element(by=NAME,value="name_RADIO_799044").click()
             time.sleep(1)
             browser.find_element_by_id("saveBtn").click()
             msg=browser.title
