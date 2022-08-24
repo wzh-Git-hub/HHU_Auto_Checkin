@@ -90,7 +90,8 @@ def sign_in(uid, pwd):
         if msg == "防疫上报统计系统":
             print(msg)
             print(url)
-            a_list=browser.find_elements_by_tag_name("a")
+            a_list=browser.find_elements(By.XPATH,'/html/body/div[1]/div[4]/div/section/section/div/a')
+            print(a_list)
             a_list[0].click()
             time.sleep(2)
             msg=browser.title
