@@ -164,13 +164,13 @@ if __name__ == "__main__":
         flag=sign_in(uid_list[i], pwd_list[i])
         if flag:
             print("第 "+str(i+1)+" 个账号打卡成功!")
-            mail(mail_list[i])
+            # mail(mail_list[i])
         else:
             print("第 "+str(i+1)+" 个账号打卡失败!\n正在发起第2次尝试")
             flag = sign_in(uid_list[i], pwd_list[i])
             if flag:
                 print("第 2 次尝试成功!")
-                mail(mail_list[i])
+                # mail(mail_list[i])
             else:
                 print("第 2 次尝试失败!")
         print()
